@@ -8,11 +8,11 @@
  */
 
 class SP_Character {
-    name
-    statProfile
-    constructor(){
-
-    }
+    name="Fork"
+    stats=new SP_Stat_Profile()
+    level=1
+    experience=0
+    constructor(){}
 }
 
 const STATS = {
@@ -25,16 +25,17 @@ const STATS = {
 }
 
 class SP_Stat_Profile {
-    strength
-    dexterity
-    constitution
-    intelligence
-    wisdom
-    charisma
+    strength=10
+    dexterity=10
+    constitution=10
+    intelligence=10
+    wisdom=10
+    charisma=10
     
     constructor() {
         return this;
     }
+
     setProperty(property, value){
         this[property] = value;
         return this;
@@ -44,17 +45,23 @@ class SP_Stat_Profile {
         let currentValue = this[property];
         return this.setProperty(property, currentValue + value);
     }
+
+    getBonus(property){
+        let currentValue = this[property];
+
+        return Math.floor((currentValue - 10) / 2)
+    }
 }
 
 
 const BaseStatProfileManager = {
     testProfile: (() => {
         return new SP_Stat_Profile()
-            .setProperty(STATS.STRENGTH, 10)
-            .setProperty(STATS.DEXTERITY, 10)
-            .setProperty(STATS.CONSTITUTION, 10)
+            .setProperty(STATS.STRENGTH, 12)
+            .setProperty(STATS.DEXTERITY, 15)
+            .setProperty(STATS.CONSTITUTION, 14)
             .setProperty(STATS.INTELLIGENCE, 10)
-            .setProperty(STATS.WISDOM, 10)
-            .setProperty(STATS.CHARISMA, 10)
+            .setProperty(STATS.WISDOM, 8)
+            .setProperty(STATS.CHARISMA, 13)
     })()
 }
